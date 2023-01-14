@@ -98,5 +98,37 @@ namespace AddressBook_ADO.Net
             }
             return string.Empty;
         }
+        public string UpdateContactInDB(AddressBookModle addresBook)
+        {
+            SqlConnection sQLConnection = new SqlConnection(connectionString);
+            try
+            {
+                using (sQLConnection)
+                {
+                    sQLConnection.Open();
+                    SqlCommand command = new SqlCommand("SPUpdateDataInDB", sQLConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SurName", addresBook.LastName);
+                    command.Parameters.AddWithValue("@Mobile", addresBook.PhoneNumber);
+                    command.Parameters.AddWithValue("@TypeOfAddressBook", addresBook.Type);
+                    int result = command.ExecuteNonQuery();
+                    sQLConnection.Close();
+                    if (result >= 1)
+                    {
+                        Console.WriteLine("Contact Updated Successfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data found");
+                    }
+                }
+                return "Contact Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return string.Empty;
+        }
     }
 }
