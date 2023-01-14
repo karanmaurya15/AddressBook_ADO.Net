@@ -8,7 +8,7 @@ internal class Program
         bool flag = true;
         while (flag)
         {
-            Console.WriteLine("Enter : 1.Add Contact in Database \n 2.Retrive Data \n 3.UpdateData \n 4.Exit : ");
+            Console.WriteLine("Enter : 1.Add Contact in Database \n 2.Retrive Data \n 3.UpdateData \n 4.Delete Contact \n 5.Exit : ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -42,6 +42,9 @@ internal class Program
                     addressBook.UpdateContactInDB(addressBookModles);
                     break;
                 case 4:
+                    addressBook.DeleteContactInDB("Patel");
+                    break;
+                case 5:
                     flag = false;
                     break;
             }

@@ -13,16 +13,16 @@ namespace AddressBookTest
         {
             AddressBookModle contact = new AddressBookModle()
             {
-                FirstName = "KK",
-                LastName = "Dok",
-                Address = "1236St",
-                City = "AnyCity",
-                State = "US",
-                Zip = 12345,
-                PhoneNumber = 9877656434,
-                Email = "jon@gmail.com",
-                AdressBookName = "My AddressBook",
-                Type = "Personalls"
+                FirstName = "Irbaz",
+                LastName = "Patel",
+                Address = "Place",
+                City = "Citis",
+                State = "Hindustan",
+                Zip = 56789,
+                PhoneNumber = 89675432367,
+                Email = "ip@xx.com",
+                AdressBookName = "Bookname",
+                Type = "Friends"
             };
             string result = addressBook.AddContactInDB(contact);
             Assert.AreEqual("Contact Added Successfully", result);
@@ -45,6 +45,12 @@ namespace AddressBookTest
             };
             string result = addressBook.UpdateContactInDB(addressBookModles);
             Assert.AreEqual("Contact Updated Successfully", result);
+        }
+        [TestMethod]
+        public void TestDeleteData()
+        {
+            string result = addressBook.DeleteContactInDB("kk");
+            Assert.AreEqual("Contact Deleted Successfully", result);
         }
     }
 }

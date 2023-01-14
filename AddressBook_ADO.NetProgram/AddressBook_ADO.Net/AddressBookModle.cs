@@ -19,4 +19,5 @@ namespace AddressBook_ADO.Net
         public string AdressBookName { get; set; }
         public string Type { get; set; }
     }
+
 }

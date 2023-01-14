@@ -30,3 +30,13 @@ CREATE PROCEDURE SPUpdateDataInDB(
 AS BEGIN
 UPDATE Address_Book_Table SET Type = @TypeOfAddressBook, PhoneNumber = @Mobile WHERE LastName = @SurName
 END
+
+--Delete
+CREATE PROCEDURE SPDeleteDataFromDB(
+@LastName VARCHAR(30)
+)
+AS BEGIN
+DELETE FROM Address_Book_Table WHERE LastName =@LastName
+END
+
+Select * From Address_Book_Table

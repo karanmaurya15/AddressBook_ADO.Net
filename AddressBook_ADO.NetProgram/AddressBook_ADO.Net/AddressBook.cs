@@ -48,7 +48,7 @@ namespace AddressBook_ADO.Net
             {
                 Console.WriteLine(ex.Message);
             }
-            return null;
+            return string.Empty;
         }
         public string RetriveData()
         {
@@ -123,6 +123,37 @@ namespace AddressBook_ADO.Net
                     }
                 }
                 return "Contact Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return string.Empty;
+        }
+        public string DeleteContactInDB(string lastname)
+        {
+            SqlConnection sQLConnection = new SqlConnection(connectionString);
+            try
+            {
+                using (sQLConnection)
+                {
+                    sQLConnection.Open();
+                    SqlCommand command = new SqlCommand("SPDeleteDataFromDB", sQLConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@LastName", lastname);
+                    int result = command.ExecuteNonQuery();
+                    sQLConnection.Close();
+                    if (result >= 1)
+                    {
+                        Console.WriteLine("Contact Deleted Successfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data found");
+                    }
+                }
+                return "Contact Deleted Successfully";
             }
             catch (Exception ex)
             {
