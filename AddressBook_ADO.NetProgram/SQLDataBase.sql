@@ -14,3 +14,9 @@ CREATE PROCEDURE SPAddNewContact(
 AS BEGIN
 INSERT INTO Address_Book_Table  VALUES(@FirstName,@LastName,@Address,@City,@State,@Zip,@PhoneNumber,@Email,@AdressBookName,@Type)
 END
+
+--Retrive
+CREATE PROCEDURE SPRetrieveAllDetails
+AS BEGIN 
+SELECT * FROM Address_Book_Table
+END

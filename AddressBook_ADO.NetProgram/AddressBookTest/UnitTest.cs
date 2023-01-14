@@ -27,5 +27,11 @@ namespace AddressBookTest
             string result = addressBook.AddContactInDB(contact);
             Assert.AreEqual("Contact Added Successfully", result);
         }
+        [TestMethod]
+        public void TestRetriveData()
+        {
+            string result = addressBook.RetriveData();
+            Assert.AreEqual("Retrive Data Successfull", result);
+        }
     }
 }

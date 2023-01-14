@@ -50,5 +50,53 @@ namespace AddressBook_ADO.Net
             }
             return null;
         }
+        public string RetriveData()
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            try
+            {
+                List<AddressBookModle> contact = new List<AddressBookModle>();
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    SqlCommand command = new SqlCommand("SPRetrieveAllDetails", sqlConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader obj = command.ExecuteReader();
+                    if (obj.HasRows)
+                    {
+                        while (obj.Read())
+                        {
+                            AddressBookModle contactItem = new AddressBookModle();
+                            contactItem.FirstName = obj.GetString(0);
+                            contactItem.LastName = obj.GetString(1);
+                            contactItem.Address = obj.GetString(2);
+                            contactItem.City = obj.GetString(3);
+                            contactItem.State = obj.GetString(4);
+                            contactItem.Zip = obj.GetInt32(5);
+                            contactItem.PhoneNumber = obj.GetInt64(6);
+                            contactItem.Email = obj.GetString(7);
+                            contactItem.AdressBookName = obj.GetString(8);
+                            contactItem.Type = obj.GetString(9);
+                            contact.Add(contactItem);
+                        }
+                        Console.WriteLine("FirstName" + " " + "LastName" + "  " + "Address" + "  " + "City" + "  " + "State" + "  " + "Zip" + " " + "PhoneNumber" + " " + "Email" + " " + "AdressbookName" + " " + "Type");
+                        foreach (var data in contact)
+                        {
+                            Console.WriteLine(data.FirstName + ", " + data.LastName + ", " + data.Address + ", " + data.City + ", " + data.State + ",  " + data.Zip + ", " + data.PhoneNumber + ",  " + data.Email + ", " + data.AdressBookName + " " + data.Type);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Database Found");
+                    }
+                }
+                return "Retrive Data Successfull";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return string.Empty;
+        }
     }
 }
