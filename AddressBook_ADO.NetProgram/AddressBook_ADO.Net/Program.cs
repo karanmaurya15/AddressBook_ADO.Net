@@ -8,7 +8,7 @@ internal class Program
         bool flag = true;
         while (flag)
         {
-            Console.WriteLine("Enter : 1.Add Contact in Database \n 2. Retrive Data \n 3. UpdateData \n 4. Delete Contact \n 5.Exit ");
+            Console.WriteLine("Enter : 1.Add Contact in Database \n 2.Exit ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -29,22 +29,6 @@ internal class Program
                     addressBook.AddContactInDB(addressBookModle);
                     break;
                 case 2:
-                    addressBook.RetriveData();
-                    break;
-                case 3:
-                    AddressBookModle addressBookModles = new AddressBookModle()
-                    {
-                        FirstName = "Karan",
-                        LastName = "Maurya",
-                        Address = "India",
-                        Type = "Permanent"
-                    };
-                    addressBook.UpdateContactInDB(addressBookModles);
-                    break;
-                case 4:
-                    addressBook.DeleteContactInDB("Doe");
-                    break;
-                case 5:
                     flag = false;
                     break;
             }
